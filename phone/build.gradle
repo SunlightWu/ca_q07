@@ -1,0 +1,24 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'io.github.q07mirror.phone'
+    compileSdk 35
+    defaultConfig { applicationId 'io.github.q07mirror.phone'; minSdk 30; targetSdk 35; versionCode 1; versionName '0.1.0-test' }
+    buildFeatures { aidl true }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_11; targetCompatibility JavaVersion.VERSION_11 }
+    signingConfigs { debug { storeFile rootProject.file('.tools/debug.keystore') } }
+}
+dependencies {
+    implementation project(':shared')
+    implementation 'dev.rikka.shizuku:api:13.1.5'
+    implementation 'dev.rikka.shizuku:provider:13.1.5'
+}
+tasks.register('verifyScrcpy') {
+    inputs.file('src/main/assets/scrcpy-server.jar')
+    doLast {
+        def actual = java.security.MessageDigest.getInstance('SHA-256').digest(file('src/main/assets/scrcpy-server.jar').bytes).encodeHex().toString()
+        if (actual != '764eb6f79811d5211fe9df341120882ba9994c7a61b897d7bf3fb662e53bc536') {
+            throw new GradleException('scrcpy server must be the pinned official 5.0.1 artifact; see vendor/README.md')
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn 'verifyScrcpy' }

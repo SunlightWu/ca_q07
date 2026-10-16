@@ -1,0 +1,14 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'io.github.q07mirror.car'
+    compileSdk 35
+    defaultConfig { applicationId 'io.github.q07mirror.car'; minSdk 30; targetSdk 30; versionCode 1; versionName '0.1.0-test' }
+    flavorDimensions += 'device'
+    productFlavors {
+        standard { dimension 'device' }
+        q07 { dimension 'device'; applicationId 'com.changan.acscenter' }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_11; targetCompatibility JavaVersion.VERSION_11 }
+    signingConfigs { debug { storeFile rootProject.file('.tools/debug.keystore') } }
+}
+dependencies { implementation project(':shared') }

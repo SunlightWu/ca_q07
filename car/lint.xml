@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- This APK targets a privately installed Android 11 AAOS unit, not Google Play.
+         Keeping target 30 matches the already-tested reference vehicle application. -->
+    <issue id="ExpiredTargetSdkVersion" severity="ignore" />
+</lint>
