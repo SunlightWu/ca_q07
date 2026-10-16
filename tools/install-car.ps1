@@ -6,13 +6,13 @@ if (-not $Adb) { $Adb=Join-Path $env:LOCALAPPDATA 'Android\Sdk\platform-tools\ad
 if (-not (Test-Path -LiteralPath $Adb)) { throw 'Pass -Adb with your adb.exe path.' }
 $apk=Join-Path $projectRoot 'dist\q07-mirror-car-q07.apk'
 if (-not (Test-Path -LiteralPath $apk)) { throw 'Run tools\build.ps1 first.' }
-$package='com.changan.acscenter'
+$package='io.car07.mirror'
 if ($Serial -match '^\d+\.\d+\.\d+\.\d+:\d+$') { & $Adb connect $Serial }
 $existing=& $Adb -s $Serial shell pm path $package 2>&1
 if ($LASTEXITCODE -ne 0) { throw 'Cannot query the selected car. Check ADB authorization and serial.' }
 $remotePaths=@($existing | Where-Object { "$_" -like 'package:*' })
 if ($remotePaths.Count -gt 0) {
-    if (-not $UpdateOurApp) { throw 'Package com.changan.acscenter is already installed. Nothing changed. For an update of THIS test app only, use -UpdateOurApp (certificate will be checked).' }
+    if (-not $UpdateOurApp) { throw "Package $package is already installed. Nothing changed. For an update of THIS test app only, use -UpdateOurApp (certificate will be checked)." }
     $sdkRoot=Split-Path (Split-Path $Adb -Parent) -Parent
     $signer=Get-ChildItem -LiteralPath (Join-Path $sdkRoot 'build-tools') -Filter apksigner.bat -Recurse | Sort-Object FullName -Descending | Select-Object -First 1
     if (-not $signer) { throw 'apksigner is required to verify an existing package before updating.' }

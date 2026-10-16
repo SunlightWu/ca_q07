@@ -2,7 +2,7 @@
 
 手机：荣耀 Magic5 / Android 16。车机：已运行参考项目的 Q07 / Android 11。
 
-本目录是新建的独立工程，没有修改 `D:\test\q07cam-main` 中的参考项目。车机测试版包名为 `com.changan.acscenter`，不使用原项目的 `de.dsa.ford.otaflash`。
+本目录是新建的独立工程，没有修改 `D:\test\q07cam-main` 中的参考项目。车机测试版使用独立包名 `io.car07.mirror`，不使用原项目的 `de.dsa.ford.otaflash`。
 
 ## 直接测试
 

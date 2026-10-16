@@ -5,15 +5,15 @@
 先驻车测试。保持手机解锁，第一轮使用 H.264 / 长边 1280。无需 root，也不需要电脑参与日常投屏；首次车机安装可使用你现有的 ADB 方式。
 
 - 手机包：`q07-mirror-phone.apk`，包名 `io.github.q07mirror.phone`。
-- 车机包：`q07-mirror-car-q07.apk`，包名 `com.changan.acscenter`。
+- 车机包：`q07-mirror-car-q07.apk`，包名 `io.car07.mirror`。
 - 普通 Android 接收端：`q07-mirror-car-standard.apk`，用于备用测试设备。
 - 手机需另外安装官方 Shizuku：<https://shizuku.rikka.app/download/>。
 
 ## 1. 安装车机 App：保留原项目
 
-原项目包名 `de.dsa.ford.otaflash` 保持原样。本测试包使用参考仓库记录的另一白名单包名空位。该空位能否在当前固件继续使用，以实际检查为准。
+原项目包名 `de.dsa.ford.otaflash` 保持原样。本测试包使用独立包名 `io.car07.mirror`，不占用任何原厂包名；该包名能否在当前固件安装，以实际检查为准。
 
-**如果 `com.changan.acscenter` 已被其他应用占用，不要卸载它，不要强行覆盖。**先反馈检查结果。
+**如果 `io.car07.mirror` 已被其他应用占用，不要卸载它，不要强行覆盖。**先反馈检查结果。
 
 使用工程附带的安装脚本，替换为你的车机 ADB 地址：
 
@@ -88,7 +88,7 @@ powershell -ExecutionPolicy Bypass -File .\tools\install-car.ps1 -Serial '车机
 如果车机没有悬浮窗授权页面，可通过你现有 ADB 执行：
 
 ```text
-adb -s 车机IP:ADB端口 shell appops set com.changan.acscenter SYSTEM_ALERT_WINDOW allow
+adb -s 车机IP:ADB端口 shell appops set io.car07.mirror SYSTEM_ALERT_WINDOW allow
 ```
 
 ## 5. 稳定性测试

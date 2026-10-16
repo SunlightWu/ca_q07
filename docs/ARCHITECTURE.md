@@ -45,6 +45,6 @@ Use actual Android routes that contain the destination before trying the default
 
 ## Packaging
 
-`car:standard` uses `io.github.q07mirror.car`. `car:q07` uses `com.changan.acscenter`, a slot documented by the reference project. The existing `de.dsa.ford.otaflash` app is untouched. No vehicle SOA SDK, system signatures or original keystore are used. A local test keystore signs all test builds. Install script rejects a pre-existing package unless explicitly updating and matching certificates.
+`car:standard` uses `io.github.q07mirror.car`. `car:q07` uses `io.car07.mirror`, an independent package name unrelated to the vehicle vendor. The existing `de.dsa.ford.otaflash` app is untouched. No vehicle SOA SDK, system signatures or original keystore are used. A local test keystore signs all test builds. Install script rejects a pre-existing package unless explicitly updating and matching certificates.
 
 The car deliberately targets API 30 for the already-tested Q07 platform, so its lint config narrowly exempts Google Play target-version policy. The phone targets API 35 and uses a `connectedDevice` foreground service with the corresponding permissions. The only exported app components are the launcher activities and the Shizuku provider protected by `INTERACT_ACROSS_USERS_FULL`.
